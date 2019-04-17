@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
-const Schema = mongoose.Schema()
+const Schema = mongoose.Schema
 
 const messageSchema = new Schema({
-  userKey: { type: String, unique: true, ref: 'user' },
+  userKey: { type: String, ref: 'user.username' },
   message: [ {
     body: String,
     textMessage: String,

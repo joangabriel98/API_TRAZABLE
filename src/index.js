@@ -9,6 +9,7 @@ const userRoutes = require('./routes/users.js')
 mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/API', {
   useNewUrlParser: true,
+  useCreateIndex: true,
 })
 
 app.set('port', process.env.PORT || 3000)
