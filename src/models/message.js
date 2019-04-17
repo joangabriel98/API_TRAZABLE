@@ -10,7 +10,7 @@ const messageSchema = new Schema({
   check: Boolean,
   create: { type: Date, default: Date.now },
   update: { type: Date, default: Date.now },
-  seller: { type: Schema.Types.ObjectId, ref: 'user' },
+  user: { type: Schema.Types.ObjectId, ref: 'user' },
 })
 
 module.exports = mongoose.model('message', messageSchema)
