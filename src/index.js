@@ -18,6 +18,5 @@ app.use(morgan('dev'))
 app.use(bodyParser.json())
 
 app.use('/users', userRoutes)
-app.use('/models', userRoutes)
 
 app.listen(app.get('port'))

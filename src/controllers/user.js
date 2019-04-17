@@ -33,6 +33,19 @@ module.exports = {
     await MessageNew.save()
     userMessage.listMessage.push(MessageNew)
     await userMessage.save()
-    res.status(201)
+    res.status(201).json(MessageNew)
+  },
+
+  idMessage: async (req, res, next) => {
+    const { idMessage } = req.params
+    const message = await Message.findById(idMessage)
+    message.check = true
+    await Message.findByIdAndUpdate(idMessage, message, { new: true })
+    res.status(200).json(message)
+  },
+
+  PepinoSearch: async (req, res, next) => {
+    const message = await Message.find({ 'message.body': { $text: { $search: 'pepino' } } })
+    res.status(200).json(message)
   },
 }
