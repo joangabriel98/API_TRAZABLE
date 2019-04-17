@@ -2,10 +2,11 @@ const express = require('express')
 const router = express.Router()
 
 const {
-  indexUser,
-  newUser,
+  indexMessage,
+  newMessage,
 } = require('../controllers/user')
 
-router.get('/', indexUser)
-router.post('/', newUser)
+router.get('/', indexMessage)
+router.post('/', newMessage)
+
 module.exports = router
