@@ -24,5 +24,9 @@
     "hooks": {
       "pre-commit": "npm test"
     }
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "mongoose": "^5.5.2"
   }
 }
