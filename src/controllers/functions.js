@@ -3,6 +3,12 @@ const Message = require('../models/message')
 
 module.exports = {
 
+  countMessage: async (req, res, next) => {
+    const messagesFeedback = await Message.find({ 'message.tipo': 'feedback' })
+    const messagesBug = await Message.find({ 'message.tipo': 'bug' })
+    res.status(200).json(`Cuenta de Feedback: ${messagesFeedback.length} -------- Cuenta de Bug ${messagesBug.length}`)
+  },
+
   indexMessage: async (req, res, next) => {
     const messages = await Message.find({})
     res.status(200).json(messages)
