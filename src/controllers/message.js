@@ -9,14 +9,18 @@ module.exports = {
   },
 
   newMessage: async (req, res) => {
-    const { userId } = req.params
-    const userMessage = await User.findById(userId)
-    const MessageNew = new Message(req.body)
-    MessageNew.user = userMessage._id
-    await MessageNew.save()
-    userMessage.listMessage.push(MessageNew)
-    await userMessage.save()
-    res.status(201).json(MessageNew)
+    try {
+      const { userId } = req.params
+      const userMessage = await User.findById(userId)
+      const MessageNew = new Message(req.body)
+      MessageNew.user = userMessage._id
+      await MessageNew.save()
+      userMessage.listMessage.push(MessageNew)
+      await userMessage.save()
+      res.status(201).json(MessageNew)
+    } catch (e) {
+      res.status(404).end('Syntax incorrect')
+    }
   },
 
   idMessage: async (req, res) => {
