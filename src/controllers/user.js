@@ -44,6 +44,12 @@ module.exports = {
     res.status(200).json(message)
   },
 
+  DeleteMessage: async (req, res, next) => {
+    const { idMessage } = req.params
+    const message = await Message.findByIdAndDelete(idMessage)
+    res.status(200).json(message)
+  },
+
   PepinoSearch: async (req, res, next) => {
     const message = await Message.find({ 'message.body': { $text: { $search: 'pepino' } } })
     res.status(200).json(message)

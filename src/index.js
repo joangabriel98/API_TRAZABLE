@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const app = express()
 
 const userRoutes = require('./routes/users.js')
+const messageRoutes = require('./routes/messages')
 
 mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/API', {
@@ -18,5 +19,6 @@ app.use(morgan('dev'))
 app.use(bodyParser.json())
 
 app.use('/users', userRoutes)
+app.use('/messages', messageRoutes)
 
 app.listen(app.get('port'))
