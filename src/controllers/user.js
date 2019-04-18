@@ -3,12 +3,12 @@ const Message = require('../models/message')
 
 module.exports = {
 
-  indexUser: async (req, res, next) => {
+  indexUser: async (req, res) => {
     const users = await User.find({})
     res.status(200).json(users)
   },
 
-  newUser: async (req, res, next) => {
+  newUser: async (req, res) => {
     const newUser = new User(req.body)
     const user = await newUser.save()
     res.status(200).json(user)
@@ -27,10 +27,5 @@ module.exports = {
       await Message.findByIdAndDelete(idMessageDelete)
     })
     res.status(200).json(user)
-  },
-
-  PepinoSearch: async (req, res, next) => {
-    const message = await Message.find({ 'message.body': { $text: { $search: 'pepino' } } })
-    res.status(200).json(message)
   },
 }

@@ -16,7 +16,7 @@ El objetivo es crear una api con express que lea de un mongo en local con la sig
 2. CRUD de mensajes.
 
 - Todos los mensajes deben tener un usuario propietario.
-- Todos los mensajes deben tener un tipo, ya sea "bug" o "feedback", un sujeto con un máximo de 50 caracteres y un cuerpo. (2 variables distintas)
+- Todos los mensajes deben tener un tipo, ya sea "bug" o "feedback", un sujeto con un máximo de 50 caracteres y un cuerpo. (2 variables distintas) --- tipo: enum
 - Todos los mensajes deben tener un campo para saber si se ha leido.
 - Todos los mensajes deben tener la fecha de creación y última actualización.
 
