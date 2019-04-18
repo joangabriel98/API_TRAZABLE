@@ -20,6 +20,15 @@ module.exports = {
     res.status(200).json(users)
   },
 
+  deleteUser: async (req, res, next) => {
+    const { idUser } = req.params
+    const user = await User.findByIdAndDelete(idUser)
+    user.listMessage.forEach(async (idMessageDelete) => {
+      await Message.findByIdAndDelete(idMessageDelete)
+    })
+    res.status(200).json(user)
+  },
+
   indexMessage: async (req, res, next) => {
     const messages = await Message.find({})
     res.status(200).json(messages)
@@ -37,6 +46,12 @@ module.exports = {
   },
 
   idMessage: async (req, res, next) => {
+    const { idMessage } = req.params
+    const message = await Message.findById(idMessage)
+    res.status(200).json(message)
+  },
+
+  idMessageCheck: async (req, res, next) => {
     const { idMessage } = req.params
     const message = await Message.findById(idMessage)
     message.check = true

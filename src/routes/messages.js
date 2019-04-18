@@ -7,11 +7,13 @@ const {
   idMessage,
   DeleteMessage,
   PepinoSearch,
+  idMessageCheck,
 } = require('../controllers/user')
 
 router.get('/', indexMessage)
-router.get('/message/:idMessage', idMessage)
+router.get('/:idMessage', idMessage)
+router.get('/check/:idMessage', idMessageCheck)
 router.get('/messagePepino', PepinoSearch)
 router.delete('/:idMessage', DeleteMessage)
-router.post('/message/:userId', newMessage)
+router.post('/:userId', newMessage)
 module.exports = router
