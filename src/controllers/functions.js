@@ -9,6 +9,18 @@ module.exports = {
     res.status(200).json(`Cuenta de Feedback: ${messagesFeedback.length} -------- Cuenta de Bug ${messagesBug.length}`)
   },
 
+  countMessageMail: async (req, res, next) => {
+    const { emailUser } = req.params
+    const userMail = await User.find({ 'email': emailUser })
+    const messagesuserMail = await Message.find({ user: userMail._id })
+    res.status(200).json(messagesuserMail)
+  },
+
+  countCheck: async (req, res, next) => {
+    const messagesuserMail = await Message.find({ 'check': false })
+    res.status(200).json(messagesuserMail)
+  },
+
   indexMessage: async (req, res, next) => {
     const messages = await Message.find({})
     res.status(200).json(messages)
