@@ -21,6 +21,12 @@ module.exports = {
     res.status(200).json(messagesuserMail)
   },
 
+  PepinoSearch: async (req, res, next) => {
+    let messagePepino = await Message.find({ 'message.textMessage': { $regex: /pepino/, $options: 'i' } })
+    messagePepino = await Message.find({ 'message.body': { $regex: /pepino/, $options: 'i' } })
+    res.status(200).json(messagePepino)
+  },
+
   indexMessage: async (req, res, next) => {
     const messages = await Message.find({})
     res.status(200).json(messages)
