@@ -24,22 +24,34 @@ module.exports = {
   },
 
   idMessage: async (req, res) => {
-    const { idMessage } = req.params
-    const message = await Message.findById(idMessage)
-    res.status(200).json(message)
+    try {
+      const { idMessage } = req.params
+      const message = await Message.findById(idMessage)
+      res.status(200).json(message)
+    } catch (e) {
+      res.status(404).end('Syntax incorrect')
+    }
   },
 
   idMessageCheck: async (req, res) => {
-    const { idMessage } = req.params
-    const message = await Message.findById(idMessage)
-    message.check = true
-    await Message.findByIdAndUpdate(idMessage, message, { new: true })
-    res.status(200).json(message)
+    try {
+      const { idMessage } = req.params
+      const message = await Message.findById(idMessage)
+      message.check = true
+      await Message.findByIdAndUpdate(idMessage, message, { new: true })
+      res.status(200).json(message)
+    } catch (e) {
+      res.status(404).end('Syntax incorrect')
+    }
   },
 
   DeleteMessage: async (req, res) => {
-    const { idMessage } = req.params
-    const message = await Message.findByIdAndDelete(idMessage)
-    res.status(200).json(message)
+    try {
+      const { idMessage } = req.params
+      const message = await Message.findByIdAndDelete(idMessage)
+      res.status(200).json(message)
+    } catch (e) {
+      res.status(404).end('Syntax incorrect')
+    }
   },
 }
