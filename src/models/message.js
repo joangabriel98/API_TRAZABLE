@@ -3,9 +3,9 @@ const Schema = mongoose.Schema
 
 const messageSchema = new Schema({
   message: {
-    body: String,
+    body: { type: String, maxlength: 50 },
     textMessage: String,
-    tipo: String,
+    type: { type: String },
   },
   check: Boolean,
   user: { type: Schema.Types.ObjectId, ref: 'user' },
