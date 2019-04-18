@@ -38,7 +38,7 @@ module.exports = {
     const { userId } = req.params
     const userMessage = await User.findById(userId)
     const MessageNew = new Message(req.body)
-    MessageNew.seller = userMessage
+    MessageNew.user = userMessage._id
     await MessageNew.save()
     userMessage.listMessage.push(MessageNew)
     await userMessage.save()

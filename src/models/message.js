@@ -8,9 +8,9 @@ const messageSchema = new Schema({
     tipo: String,
   },
   check: Boolean,
+  user: { type: Schema.Types.ObjectId, ref: 'user' },
   create: { type: Date, default: Date.now },
   update: { type: Date, default: Date.now },
-  user: { type: Schema.Types.ObjectId, ref: 'user' },
 })
 
 module.exports = mongoose.model('message', messageSchema)
