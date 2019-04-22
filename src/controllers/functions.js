@@ -42,4 +42,22 @@ module.exports = {
       res.status(404).end('Syntax incorrect')
     }
   },
+
+  ThreePerson: async (req, res) => {
+    try {
+      User.aggregate([{ $project: {
+        'username': 1,
+        'length': { '$size': '$listMessage' },
+
+      } },
+      { $sort: { 'length': -1 } },
+      { $limit: 3 },
+      ], function (_err, results) {
+        console.log(results)
+      })
+      res.status(200).json('Hecho')
+    } catch (e) {
+      res.status(404).end('Syntax incorrect')
+    }
+  },
 }
