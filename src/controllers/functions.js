@@ -53,9 +53,8 @@ module.exports = {
       { $sort: { 'length': -1 } },
       { $limit: 3 },
       ], function (_err, results) {
-        console.log(results)
+        return res.status(200).json(results)
       })
-      res.status(200).json()
     } catch (e) {
       res.status(404).end('Syntax incorrect')
     }
