@@ -2,12 +2,13 @@ const User = require('../models/user')
 const Message = require('../models/message')
 
 module.exports = {
-
+  // sample all the users
   indexUser: async (req, res) => {
     const users = await User.find({})
     res.status(200).json(users)
   },
 
+  // create new user
   newUser: async (req, res) => {
     try {
       const newUser = new User(req.body)
@@ -18,6 +19,7 @@ module.exports = {
     }
   },
 
+  // sample the target user
   getUser: async (req, res) => {
     try {
       const { userMail } = req.params
@@ -28,6 +30,7 @@ module.exports = {
     }
   },
 
+  // update user
   UpdateUser: async (req, res) => {
     try {
       const userUpdate = req.body
@@ -41,6 +44,7 @@ module.exports = {
     }
   },
 
+  // delete user and messages related
   deleteUser: async (req, res) => {
     try {
       const { idUser } = req.params

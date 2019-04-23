@@ -1,13 +1,15 @@
+// require the modal of user and message
 const User = require('../models/user')
 const Message = require('../models/message')
 
+// export the differents functions
 module.exports = {
-
+  // sample all the messages
   indexMessage: async (req, res) => {
     const messages = await Message.find({})
     res.status(200).json(messages)
   },
-
+  // create a new message and push in array of target user
   newMessage: async (req, res) => {
     try {
       const { userId } = req.params
@@ -22,7 +24,7 @@ module.exports = {
       res.status(404).end('Syntax incorrect')
     }
   },
-
+  // update the message
   UpdateMessage: async (req, res) => {
     try {
       const messageUpdate = req.body
@@ -35,7 +37,7 @@ module.exports = {
       res.status(404).end('Syntax incorrect')
     }
   },
-
+  // sample the target message
   idMessage: async (req, res) => {
     try {
       const { idMessage } = req.params
@@ -46,6 +48,7 @@ module.exports = {
     }
   },
 
+  // check the target message
   idMessageCheck: async (req, res) => {
     try {
       const { idMessage } = req.params
@@ -58,6 +61,7 @@ module.exports = {
     }
   },
 
+  // delete message
   DeleteMessage: async (req, res) => {
     try {
       const { idMessage } = req.params
