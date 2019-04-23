@@ -23,6 +23,19 @@ module.exports = {
     }
   },
 
+  UpdateMessage: async (req, res) => {
+    try {
+      const messageUpdate = req.body
+      const { idmessage } = req.params
+      const messageNew = await Message.findByIdAndUpdate(idmessage, messageUpdate, { new: true, useFindAndModify: false })
+      messageNew.update = Date.now()
+      await User.findByIdAndUpdate(idmessage, messageNew, { new: true, useFindAndModify: false })
+      res.status(200).json(messageNew)
+    } catch (e) {
+      res.status(404).end('Syntax incorrect')
+    }
+  },
+
   idMessage: async (req, res) => {
     try {
       const { idMessage } = req.params
