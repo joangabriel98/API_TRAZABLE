@@ -30,9 +30,11 @@ module.exports = {
 
   UpdateUser: async (req, res) => {
     try {
-      const userUpdate = new User(req.body)
+      const userUpdate = req.body
       const { user } = req.params
-      const users = await User.findByIdAndUpdate(user, userUpdate, { new: true, upsert: true })
+      const users = await User.findByIdAndUpdate(user, userUpdate, { new: true, useFindAndModify: false })
+      users.updated = Date.now()
+      await User.findByIdAndUpdate(user, users, { new: true, useFindAndModify: false })
       res.status(200).json(users)
     } catch (e) {
       res.status(404).end('Syntax incorrect')

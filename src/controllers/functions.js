@@ -55,7 +55,7 @@ module.exports = {
       ], function (_err, results) {
         console.log(results)
       })
-      res.status(200).json('Hecho')
+      res.status(200).json()
     } catch (e) {
       res.status(404).end('Syntax incorrect')
     }
